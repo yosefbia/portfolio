@@ -1,0 +1,832 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Yosef Biadse | Software Engineer Portfolio</title>
+  <meta name="description" content="Premium portfolio website for Yosef Biadse — software engineering graduate building mobile apps, backend systems, and practical digital products." />
+  <meta name="theme-color" content="#0b1220" />
+  <style>
+    :root {
+      --bg: #07111f;
+      --bg-soft: rgba(15, 23, 42, 0.72);
+      --panel: rgba(12, 18, 32, 0.82);
+      --panel-2: rgba(18, 28, 48, 0.88);
+      --line: rgba(148, 163, 184, 0.18);
+      --text: #e5eefb;
+      --muted: #9fb0c8;
+      --accent: #5eead4;
+      --accent-2: #7c9cff;
+      --accent-3: #9d7bff;
+      --shadow: 0 22px 60px rgba(0, 0, 0, 0.35);
+      --radius: 24px;
+      --max: 1180px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(124, 156, 255, 0.18), transparent 28%),
+        radial-gradient(circle at 85% 10%, rgba(94, 234, 212, 0.14), transparent 20%),
+        radial-gradient(circle at 50% 100%, rgba(157, 123, 255, 0.15), transparent 25%),
+        linear-gradient(180deg, #08101d 0%, #07111f 40%, #091524 100%);
+      line-height: 1.65;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+      background-size: 34px 34px;
+      mask-image: linear-gradient(to bottom, rgba(0,0,0,0.8), transparent 92%);
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    .container {
+      width: min(var(--max), calc(100% - 32px));
+      margin: 0 auto;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(18px);
+      background: rgba(7, 17, 31, 0.58);
+      border-bottom: 1px solid rgba(148, 163, 184, 0.08);
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      min-height: 76px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+    }
+
+    .brand-mark {
+      width: 44px;
+      height: 44px;
+      border-radius: 16px;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(135deg, rgba(124, 156, 255, 0.25), rgba(94, 234, 212, 0.2));
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.08);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      color: var(--muted);
+      font-size: 0.96rem;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    .nav-links a:hover { color: var(--text); }
+
+    .hero {
+      padding: 74px 0 36px;
+    }
+
+    .hero-wrap {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 28px;
+      align-items: stretch;
+    }
+
+    .glass {
+      background: linear-gradient(180deg, rgba(17, 26, 45, 0.92), rgba(11, 18, 32, 0.78));
+      border: 1px solid rgba(255,255,255,0.09);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+
+    .hero-card {
+      padding: 42px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-card::after {
+      content: "";
+      position: absolute;
+      width: 340px;
+      height: 340px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(124, 156, 255, 0.25), transparent 65%);
+      top: -120px;
+      right: -90px;
+      pointer-events: none;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      gap: 10px;
+      align-items: center;
+      padding: 8px 14px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.05);
+      color: var(--accent);
+      font-size: 0.88rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      border: 1px solid rgba(255,255,255,0.08);
+      margin-bottom: 18px;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(2.8rem, 6vw, 5rem);
+      line-height: 0.95;
+      letter-spacing: -0.05em;
+      max-width: 8ch;
+    }
+
+    .hero-sub {
+      margin: 18px 0 0;
+      font-size: 1.08rem;
+      color: var(--muted);
+      max-width: 62ch;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-top: 28px;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 14px 18px;
+      border-radius: 14px;
+      font-weight: 700;
+      transition: 160ms ease;
+      border: 1px solid transparent;
+    }
+
+    .button.primary {
+      background: linear-gradient(135deg, var(--accent-2), var(--accent));
+      color: #07111f;
+      box-shadow: 0 14px 30px rgba(94, 234, 212, 0.18);
+    }
+
+    .button.secondary {
+      background: rgba(255,255,255,0.03);
+      color: var(--text);
+      border-color: rgba(255,255,255,0.1);
+    }
+
+    .button:hover { transform: translateY(-2px); }
+
+    .hero-mini {
+      margin-top: 30px;
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .mini-card {
+      padding: 14px 16px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 18px;
+    }
+
+    .mini-label {
+      color: var(--muted);
+      font-size: 0.82rem;
+      margin-bottom: 8px;
+    }
+
+    .mini-value {
+      font-size: 1.02rem;
+      font-weight: 700;
+    }
+
+    .side-card {
+      padding: 30px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 18px;
+    }
+
+    .profile-ring {
+      width: 122px;
+      height: 122px;
+      border-radius: 28px;
+      display: grid;
+      place-items: center;
+      font-size: 2rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      background:
+        linear-gradient(var(--panel), var(--panel)) padding-box,
+        linear-gradient(135deg, var(--accent), var(--accent-2), var(--accent-3)) border-box;
+      border: 1.5px solid transparent;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.08);
+    }
+
+    .title-sm {
+      font-size: 1.18rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .muted { color: var(--muted); }
+
+    .list {
+      display: grid;
+      gap: 10px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .list li {
+      display: flex;
+      align-items: start;
+      gap: 10px;
+      color: #d7e5f7;
+    }
+
+    .list li::before {
+      content: "✦";
+      color: var(--accent);
+      margin-top: 1px;
+      font-size: 0.86rem;
+    }
+
+    section {
+      padding: 22px 0;
+    }
+
+    .section-head {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 18px;
+      margin-bottom: 18px;
+    }
+
+    h2 {
+      margin: 0;
+      font-size: clamp(1.55rem, 3vw, 2.3rem);
+      letter-spacing: -0.04em;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 22px;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .panel {
+      padding: 26px;
+      background: linear-gradient(180deg, rgba(15, 23, 42, 0.86), rgba(10, 16, 28, 0.92));
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 24px;
+      box-shadow: var(--shadow);
+    }
+
+    .kicker {
+      color: var(--accent);
+      text-transform: uppercase;
+      font-size: 0.78rem;
+      letter-spacing: 0.12em;
+      margin-bottom: 10px;
+      font-weight: 700;
+    }
+
+    .lead {
+      font-size: 1.02rem;
+      color: #dce8f8;
+      margin: 0;
+    }
+
+    .tag-wrap {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    .tag {
+      padding: 9px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.08);
+      background: rgba(255,255,255,0.04);
+      color: #d8e6f8;
+      font-size: 0.92rem;
+    }
+
+    .feature {
+      position: relative;
+      overflow: hidden;
+      padding: 30px;
+    }
+
+    .feature::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 85% 18%, rgba(94, 234, 212, 0.12), transparent 18%), radial-gradient(circle at 15% 100%, rgba(124, 156, 255, 0.15), transparent 25%);
+      pointer-events: none;
+    }
+
+    .feature-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 22px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .metric-row {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .metric {
+      padding: 16px;
+      border-radius: 18px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .metric strong {
+      display: block;
+      font-size: 1.1rem;
+      margin-bottom: 4px;
+    }
+
+    .project-card {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      height: 100%;
+    }
+
+    .project-card h3,
+    .timeline-card h3 {
+      margin: 0;
+      font-size: 1.18rem;
+    }
+
+    .project-card p,
+    .timeline-card p { margin: 0; color: var(--muted); }
+
+    .project-links {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: auto;
+      padding-top: 8px;
+    }
+
+    .text-link {
+      color: var(--accent);
+      font-weight: 700;
+    }
+
+    .skill-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .skill-box {
+      padding: 18px;
+      border-radius: 20px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .skill-box h4 {
+      margin: 0 0 10px;
+      font-size: 1rem;
+    }
+
+    .timeline {
+      display: grid;
+      gap: 16px;
+    }
+
+    .timeline-card {
+      position: relative;
+      padding: 22px;
+      border-radius: 22px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .timeline-card .date {
+      display: inline-block;
+      margin-bottom: 8px;
+      color: var(--accent);
+      font-size: 0.88rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+    }
+
+    .cta {
+      margin: 28px 0 60px;
+      padding: 34px;
+      text-align: center;
+      background: linear-gradient(135deg, rgba(124, 156, 255, 0.22), rgba(94, 234, 212, 0.16));
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 30px;
+      box-shadow: var(--shadow);
+    }
+
+    .cta p {
+      color: #dce7f7;
+      max-width: 720px;
+      margin: 12px auto 0;
+    }
+
+    footer {
+      padding: 0 0 42px;
+      color: var(--muted);
+      text-align: center;
+      font-size: 0.94rem;
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (max-width: 1080px) {
+      .hero-wrap,
+      .feature-grid,
+      .grid-2,
+      .skill-grid {
+        grid-template-columns: 1fr;
+      }
+      .grid-3 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+
+    @media (max-width: 760px) {
+      .hero-card,
+      .panel,
+      .feature,
+      .side-card,
+      .cta {
+        padding: 22px;
+        border-radius: 22px;
+      }
+      .hero-mini,
+      .metric-row,
+      .grid-3 {
+        grid-template-columns: 1fr;
+      }
+      .nav { padding: 10px 0; align-items: start; }
+      .nav-links { gap: 12px; }
+      h1 { max-width: 100%; }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="container nav">
+      <div class="brand">
+        <div class="brand-mark">YB</div>
+        <div>
+          <div>Yosef Biadse</div>
+          <div class="muted" style="font-size:0.9rem;font-weight:500;">Software Engineer • Mobile & Full-Stack</div>
+        </div>
+      </div>
+      <nav class="nav-links">
+        <a href="#about">About</a>
+        <a href="#projects">Projects</a>
+        <a href="#stack">Stack</a>
+        <a href="#contact">Contact</a>
+        <a href="https://www.linkedin.com/in/yosef-biadse/" target="_blank" rel="noreferrer">LinkedIn</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container hero-wrap">
+        <div class="glass hero-card reveal">
+          <div class="eyebrow">Available for software roles</div>
+          <h1>Building practical products that feel real.</h1>
+          <p class="hero-sub">
+            I’m Yosef Biadse — a software engineering graduate focused on mobile apps, backend systems, and clean product execution.
+            I build with React Native, Node.js, MongoDB, SQL Server, Firebase, and a strong eye for usable interfaces.
+          </p>
+          <div class="hero-actions">
+            <a class="button primary" href="#projects">View My Work</a>
+            <a class="button secondary" href="https://github.com/yosef132/IsraelTransport" target="_blank" rel="noreferrer">Featured GitHub Repo</a>
+            <a class="button secondary" href="https://www.linkedin.com/in/yosef-biadse/" target="_blank" rel="noreferrer">LinkedIn Profile</a>
+          </div>
+          <div class="hero-mini">
+            <div class="mini-card">
+              <div class="mini-label">Focus</div>
+              <div class="mini-value">React Native + Backend</div>
+            </div>
+            <div class="mini-card">
+              <div class="mini-label">Languages</div>
+              <div class="mini-value">Arabic • Hebrew • English</div>
+            </div>
+            <div class="mini-card">
+              <div class="mini-label">Signature Project</div>
+              <div class="mini-value">Israel Transport</div>
+            </div>
+          </div>
+        </div>
+
+        <aside class="glass side-card reveal">
+          <div class="profile-ring">YB</div>
+          <div>
+            <div class="title-sm">What I bring</div>
+            <ul class="list">
+              <li>Production-minded frontend work with polished user flows and role-based experiences.</li>
+              <li>Backend API thinking with database structure, CRUD flows, validation, and integration work.</li>
+              <li>Strong iteration style: I refine fast, debug carefully, and keep improving until the result feels right.</li>
+              <li>Comfort working across code, UI, documentation, and technical problem solving.</li>
+            </ul>
+          </div>
+          <div>
+            <div class="title-sm">Quick snapshot</div>
+            <p class="muted" style="margin:0;">
+              Software Engineering diploma graduate with excellence from Ruppin Academic Center, combining development, design sense, and disciplined execution.
+            </p>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section id="about">
+      <div class="container grid-2">
+        <div class="panel reveal">
+          <div class="kicker">About me</div>
+          <h2>Job-application ready, not just school-project ready.</h2>
+          <p class="lead" style="margin-top:14px;">
+            My portfolio is built around one idea: useful software should solve real problems clearly. I enjoy taking a project from concept to working product — designing the interface, building the flows, wiring the backend, and improving the experience through iteration.
+          </p>
+          <div class="tag-wrap">
+            <span class="tag">Mobile Development</span>
+            <span class="tag">Backend APIs</span>
+            <span class="tag">Database Design</span>
+            <span class="tag">UI/UX Thinking</span>
+            <span class="tag">Product Execution</span>
+          </div>
+        </div>
+        <div class="panel reveal">
+          <div class="kicker">Strengths</div>
+          <h2>Technical depth with real delivery energy.</h2>
+          <ul class="list" style="margin-top:14px;">
+            <li>Clean React Native screens, polished dashboards, and user-friendly flows.</li>
+            <li>Node.js and Express APIs with structured routing and practical business logic.</li>
+            <li>MongoDB and SQL Server work including schemas, validation, and data operations.</li>
+            <li>Visual communication skills from Photoshop and Illustrator experience.</li>
+            <li>Comfort handling pressure, teamwork, and responsibility in fast-moving environments.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects">
+      <div class="container">
+        <div class="section-head reveal">
+          <div>
+            <div class="kicker">Featured work</div>
+            <h2>Projects that show how I think and build.</h2>
+          </div>
+          <div class="muted">Focused on practical systems, mobile UX, and execution.</div>
+        </div>
+
+        <div class="panel feature reveal">
+          <div class="feature-grid">
+            <div>
+              <div class="kicker">Flagship project</div>
+              <h2 style="margin-bottom:12px;">Israel Transport</h2>
+              <p class="lead">
+                A full-stack transportation management platform built to modernize trip booking and operational workflows. The system supports clients, drivers, and admins through role-based experiences, scheduling logic, authentication, and management tools.
+              </p>
+              <ul class="list" style="margin-top:18px;">
+                <li>Built mobile application flows with React Native and Expo.</li>
+                <li>Integrated role-based dashboards for users, drivers, and administrators.</li>
+                <li>Connected backend services, authentication flows, and database operations.</li>
+                <li>Designed the product around real-world booking, routing, and management needs.</li>
+              </ul>
+              <div class="project-links">
+                <a class="text-link" href="https://github.com/yosef132/IsraelTransport" target="_blank" rel="noreferrer">View GitHub repository →</a>
+              </div>
+            </div>
+            <div>
+              <div class="metric-row">
+                <div class="metric">
+                  <strong>Frontend</strong>
+                  <span class="muted">React Native, Expo, mobile UI</span>
+                </div>
+                <div class="metric">
+                  <strong>Backend</strong>
+                  <span class="muted">Node.js, Express, REST APIs</span>
+                </div>
+                <div class="metric">
+                  <strong>Data</strong>
+                  <span class="muted">MongoDB, SQL Server, validation</span>
+                </div>
+              </div>
+              <div class="panel" style="margin-top:18px; padding:22px; background:rgba(255,255,255,0.03);">
+                <div class="title-sm">Why this project matters</div>
+                <p class="muted" style="margin:0;">
+                  It demonstrates more than coding. It shows system thinking, user-role design, frontend polish, backend coordination, and the ability to keep refining a large project until it becomes coherent and usable.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="grid-3" style="margin-top:18px;">
+          <article class="panel project-card reveal">
+            <div class="kicker">Project</div>
+            <h3>Marketplace Mobile App</h3>
+            <p>
+              A Facebook Marketplace-style application focused on item listings, account flows, image handling, and clean browsing experiences.
+            </p>
+            <div class="tag-wrap">
+              <span class="tag">Android</span>
+              <span class="tag">Firebase</span>
+              <span class="tag">Image Uploads</span>
+            </div>
+          </article>
+
+          <article class="panel project-card reveal">
+            <div class="kicker">Project</div>
+            <h3>Task Manager with Gamification</h3>
+            <p>
+              A product concept built around motivation, structure, and user engagement — combining practical productivity with a more rewarding experience.
+            </p>
+            <div class="tag-wrap">
+              <span class="tag">Android</span>
+              <span class="tag">UX Thinking</span>
+              <span class="tag">Product Design</span>
+            </div>
+          </article>
+
+          <article class="panel project-card reveal">
+            <div class="kicker">Project</div>
+            <h3>Weather Prediction AI</h3>
+            <p>
+              An exploratory AI concept for analyzing weather data and generating practical predictions, showing curiosity beyond standard CRUD app development.
+            </p>
+            <div class="tag-wrap">
+              <span class="tag">JavaScript</span>
+              <span class="tag">Machine Learning</span>
+              <span class="tag">CSV Data</span>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="stack">
+      <div class="container">
+        <div class="section-head reveal">
+          <div>
+            <div class="kicker">Core stack</div>
+            <h2>The tools I use to build modern products.</h2>
+          </div>
+        </div>
+        <div class="skill-grid reveal">
+          <div class="skill-box">
+            <h4>Frontend</h4>
+            <div class="muted">React Native, Expo, JavaScript, mobile UI, screen flows, role-based dashboards</div>
+          </div>
+          <div class="skill-box">
+            <h4>Backend</h4>
+            <div class="muted">Node.js, Express.js, REST APIs, routing, authentication, business logic</div>
+          </div>
+          <div class="skill-box">
+            <h4>Data</h4>
+            <div class="muted">MongoDB, SQL Server, schemas, CRUD operations, validation, structured data design</div>
+          </div>
+          <div class="skill-box">
+            <h4>Tools & Design</h4>
+            <div class="muted">Git, GitHub, Firebase, Photoshop, Illustrator, documentation, iterative debugging</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container grid-2">
+        <div class="panel reveal">
+          <div class="kicker">Education</div>
+          <h2>Software Engineering Diploma</h2>
+          <div class="timeline" style="margin-top:16px;">
+            <div class="timeline-card">
+              <span class="date">Ruppin Academic Center</span>
+              <h3>Completed with excellence</h3>
+              <p>
+                Strong academic foundation in software engineering, application development, structured problem solving, and practical project execution.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="panel reveal">
+          <div class="kicker">Professional profile</div>
+          <h2>More than code.</h2>
+          <div class="timeline" style="margin-top:16px;">
+            <div class="timeline-card">
+              <span class="date">Leadership & teamwork</span>
+              <h3>Operations experience under pressure</h3>
+              <p>
+                Experience in fast-paced work environments strengthened my reliability, communication, and ability to stay effective under pressure.
+              </p>
+            </div>
+            <div class="timeline-card">
+              <span class="date">Creative edge</span>
+              <h3>Design-aware implementation</h3>
+              <p>
+                Background with Photoshop and Illustrator helps me think visually, not only technically — which improves how I build interfaces and present work.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="container">
+        <div class="cta reveal">
+          <div class="kicker" style="color:#dff7f0;">Let’s connect</div>
+          <h2 style="margin-bottom:0;">Open to junior software engineering, full-stack, and mobile development opportunities.</h2>
+          <p>
+            This site is designed to support job applications and recruiter outreach. For interviews, applications, or collaboration, the fastest way to reach me is through LinkedIn or GitHub.
+          </p>
+          <div class="hero-actions" style="justify-content:center; margin-top:22px;">
+            <a class="button primary" href="https://www.linkedin.com/in/yosef-biadse/" target="_blank" rel="noreferrer">Connect on LinkedIn</a>
+            <a class="button secondary" href="https://github.com/yosef132" target="_blank" rel="noreferrer">Visit GitHub</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      Yosef Biadse • Software Engineer Portfolio • Built for premium job applications
+    </div>
+  </footer>
+
+  <script>
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.14 });
+
+    document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
+  </script>
+</body>
+</html>
